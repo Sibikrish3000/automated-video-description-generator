@@ -14,7 +14,7 @@ class VideoIngestor:
         cap = cv2.VideoCapture(self.video_path)  # type: ignore[attr-defined]
         if not cap.isOpened():
             self.logger.error("Cannot open video file: %s", self.video_path)
-            raise IOError("Cannot open video file: %s", self.video_path)
+            raise IOError("Cannot open video file: %s" % self.video_path)
         self.logger.info("Video file loaded: %s", self.video_path)
         cap.release()
         return self.video_path
