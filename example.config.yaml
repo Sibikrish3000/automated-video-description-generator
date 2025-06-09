@@ -1,0 +1,7 @@
+num_frames: 10
+detail: "low"
+model: "qwen/qwen2.5-vl-32b-instruct:free"
+prompt_template: |
+  You are a video analysis expert. These are sequential frames from a video. Please provide a single-paragraph description that covers the setting, main subjects, their actions, and the overall mood or narrative.
+api_key: "your-openai-api-key" 
+base_url: "https://openrouter.ai/api/v1"
