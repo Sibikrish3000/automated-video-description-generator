@@ -4,10 +4,10 @@ from pipeline.preprocessing import FramePreprocessor
 from pipeline.prompt_engineering import PromptEngineer
 from pipeline.vlm_inference import VLMInferencer
 from pipeline.evaluation import Evaluator
-from utils.jsonify import json_entry
-import json
-
+from utils.jsonify import Jsonifier
+import glob
 import yaml
+import os
 
 def run_pipeline(video_path, config):
     video = VideoIngestor(video_path).load()
@@ -27,14 +27,33 @@ def main():
     config_path = sys.argv[2]
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
-    result = run_pipeline(video_path, config)
-    if result:
-        new_entry = {
-            "file_path": video_path,
-            "description": result
-        }
-        json_entry("video_metadata.json", new_entry)
-    print(result)
+    
+    VIDEO_DIR = video_path
+    json_handler = Jsonifier("video_metadata.json")
+    print(f"\n--- Searching for videos in '{VIDEO_DIR}' directory ---")
+    video_extensions = ["*.mp4", "*.mov", "*.avi", "*.mkv"]
+    video_files = []
+
+    for extension in video_extensions:
+        video_files.extend(glob.glob(os.path.join(VIDEO_DIR, extension)))
+    print(f"Found {len(video_files)} videos:")
+
+    for video_file in video_files:
+        if json_handler.check_video_description_exists(video_file):
+            print(f"Skipping {video_file} because it already has a description")
+            continue
+
+        print(f"Running pipeline for {video_file}")
+        result = run_pipeline(video_file, config)
+        if result:
+            new_entry = {
+                "file_path": video_file,
+                "description": result
+            }
+            json_handler.json_entry(new_entry)
+        else:
+            print(f"No result from pipeline for {video_file}")
 
 if __name__ == "__main__":
+
     main()

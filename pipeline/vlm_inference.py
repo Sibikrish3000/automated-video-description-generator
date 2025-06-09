@@ -33,7 +33,10 @@ class VLMInferencer:
             messages=messages,
             max_tokens=256
         )
-        print(response)
+        # print(response)
+        if response == None:
+            self.logger.error("No response from LLM.")
+            return None
         description = response.choices[0].message.content
         self.logger.info("Received description from VLM.")
         return description 
