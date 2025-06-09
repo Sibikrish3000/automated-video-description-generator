@@ -11,7 +11,7 @@ import os
 
 def run_pipeline(video_path, config):
     video = VideoIngestor(video_path).load()
-    frames = FrameExtractor(config['num_frames']).extract(video_path)
+    frames = FrameExtractor(config['num_frames']).extract(video)
     preprocessed_frames = FramePreprocessor(config['detail']).preprocess(frames)
     prompt = PromptEngineer(config['prompt_template']).build_prompt(preprocessed_frames)
     ai_caption = VLMInferencer(config['api_key'], config['model'], config['base_url']).infer(prompt, preprocessed_frames)
