@@ -33,7 +33,7 @@ class Jsonifier:
         data[file_path] = new_entry
 
         # Save to file
-        with open(self.json_path, 'w') as f:
+        with open(self.json_path, 'w',) as f:
             json.dump(data, f, indent=4)
 
         print(f"description added: {file_path}")
