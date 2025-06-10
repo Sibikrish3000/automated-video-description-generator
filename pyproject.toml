@@ -12,9 +12,12 @@ dependencies = [
     "pyyaml>=6.0.2",
     "typer>=0.16.0",
 ]
+# 1. Explicitly list the single .py file at the root you want to be importable
 
+[tool.setuptools]
+packages = ["pipeline", "utils"]
 [project.scripts]
-video-describe = "main:main"
+video-describe = "pipeline:cli.main"
 
 [dependency-groups]
 dev = [
