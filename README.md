@@ -44,7 +44,7 @@ A modular, extensible pipeline for generating natural language descriptions of v
 
 1. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/Sibikrish3000/automated-video-description-generator.git
    cd automated-video-description-generator
    ```
 
