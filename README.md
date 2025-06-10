@@ -56,7 +56,7 @@ A modular, extensible pipeline for generating natural language descriptions of v
 
 3. **Install dependencies:**
    ```sh
-   pip install -r requirements.txt
+   pip install .
    ```
 
 ---
@@ -85,7 +85,11 @@ Place your videos in a directory (e.g., `video/`). Supported formats: `.mp4`, `.
 
 Run the pipeline:
 ```sh
-python main.py video/ config.yaml
+video-describe video/ config.yaml
+```
+To Uninstall the pipeline:
+```sh
+pip uninstall automated-video-description-generator
 ```
 - The script will process all videos in the directory, skipping those already described in `video_metadata.json`.
 - Descriptions are saved in `video_metadata.json`.

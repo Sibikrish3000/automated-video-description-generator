@@ -1,7 +1,7 @@
 [project]
 name = "automated-video-description-generator"
 version = "0.1.0"
-description = "Add your description here"
+description = "A modular, extensible pipeline for generating natural language descriptions of videos using state-of-the-art Vision-Language Models (VLMs). This project is designed for research, prototyping, and practical applications in video understanding, accessibility, and content summarization."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -12,7 +12,6 @@ dependencies = [
     "pyyaml>=6.0.2",
     "typer>=0.16.0",
 ]
-# 1. Explicitly list the single .py file at the root you want to be importable
 
 [tool.setuptools]
 packages = ["pipeline", "utils"]
